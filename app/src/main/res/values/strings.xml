@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Note App</string>
+    <string name="default_web_client_id">846314553022-7jplcor20bq3kinokpq5b88d1t8pgjjq.apps.googleusercontent.com</string>
+    <string name="no_accounts_error">No Account Found</string>
+    <string name="sign_up_description">Don\'t have an account? \n Click here to Sign Up!</string>
+    <string name="or">or</string>
+</resources>
