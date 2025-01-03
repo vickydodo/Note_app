@@ -41,13 +41,14 @@ import com.example.noteapp.feature_note.presentation.notes.components.NoteItem
 import com.example.noteapp.feature_note.presentation.notes.components.OrderSection
 import com.example.noteapp.feature_note.utils.Screen
 import kotlinx.coroutines.launch
+import org.koin.androidx.compose.koinViewModel
 
 @ExperimentalAnimationApi
 @Composable
 fun NoteScreen(
     navController: NavController,
-    noteViewModel: NoteViewModel,
-    authViewModel: AuthViewModel,
+    noteViewModel: NoteViewModel = koinViewModel<NoteViewModel>(),
+    authViewModel: AuthViewModel = koinViewModel<AuthViewModel>(),
 ) {
 
     // Pass the userId to NoteViewModel

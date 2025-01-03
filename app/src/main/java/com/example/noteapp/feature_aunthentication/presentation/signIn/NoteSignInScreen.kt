@@ -34,11 +34,12 @@ import com.example.noteapp.feature_aunthentication.presentation.components.LogIn
 import com.example.noteapp.feature_aunthentication.presentation.components.SignInWithGoogleButton
 import com.example.noteapp.feature_note.utils.Screen
 import com.example.noteapp.ui.theme.Purple40
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun NoteSignInScreen(
     navController: NavController,
-    authViewModel: AuthViewModel ,
+    authViewModel: AuthViewModel = koinViewModel<AuthViewModel>(),
 ) {
 
     val authState = authViewModel.authState.observeAsState()

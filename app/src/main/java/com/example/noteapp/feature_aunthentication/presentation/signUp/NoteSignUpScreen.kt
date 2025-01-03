@@ -25,11 +25,12 @@ import com.example.noteapp.feature_aunthentication.presentation.components.AppHe
 import com.example.noteapp.feature_aunthentication.presentation.components.BackgroundCircles
 import com.example.noteapp.feature_aunthentication.presentation.components.SignUpForm
 import com.example.noteapp.feature_note.utils.Screen
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun NoteSignUpScreen(
     navController: NavController,
-    authViewModel: AuthViewModel
+    authViewModel: AuthViewModel = koinViewModel<AuthViewModel>(),
 ) {
     val authState = authViewModel.authState.observeAsState()
     val context = LocalContext.current

@@ -49,6 +49,7 @@ import com.example.noteapp.feature_note.domain.model.Note
 import com.example.noteapp.feature_note.presentation.add_edit_note.components.AttachmentDialog
 import com.example.noteapp.feature_note.presentation.add_edit_note.components.TransparentHintTextField
 import kotlinx.coroutines.launch
+import org.koin.androidx.compose.koinViewModel
 import java.io.File
 
 
@@ -56,7 +57,7 @@ import java.io.File
 fun AddEditNoteScreen(
     navController: NavController,
     noteColor: Int,
-    viewModel: AddEditNoteViewModel,
+    viewModel: AddEditNoteViewModel = koinViewModel<AddEditNoteViewModel>(),
     userId: String
 ) {
 

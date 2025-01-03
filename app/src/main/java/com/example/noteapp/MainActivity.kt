@@ -18,9 +18,7 @@ import com.example.noteapp.feature_aunthentication.presentation.signIn.NoteSignI
 import com.example.noteapp.feature_aunthentication.presentation.signUp.NoteSignUpScreen
 import com.example.noteapp.feature_aunthentication.presentation.welcome.NoteWelcomeScreen
 import com.example.noteapp.feature_note.presentation.add_edit_note.AddEditNoteScreen
-import com.example.noteapp.feature_note.presentation.add_edit_note.AddEditNoteViewModel
 import com.example.noteapp.feature_note.presentation.notes.NoteScreen
-import com.example.noteapp.feature_note.presentation.notes.NoteViewModel
 import com.example.noteapp.feature_note.utils.Screen
 import com.example.noteapp.ui.theme.NoteAppTheme
 import org.koin.androidx.compose.koinViewModel
@@ -39,8 +37,6 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colors.background
                 ) {
                     val navController = rememberNavController()
-                    val noteViewModel: NoteViewModel = koinViewModel()
-                    val addEditNoteViewModel: AddEditNoteViewModel = koinViewModel()
                     val authViewModel: AuthViewModel = koinViewModel()
                     NavHost(
                         navController = navController,
@@ -48,21 +44,19 @@ class MainActivity : ComponentActivity() {
                     ) {
                         composable(route = Screen.WelcomeScreen.route) {
                             NoteWelcomeScreen(
-                                navController = navController, authViewModel = authViewModel
+                                navController = navController
                             )
                         }
 
                         composable(route = Screen.LoginScreen.route) {
                             NoteSignInScreen(
-                                navController = navController,
-                                authViewModel = authViewModel
+                                navController = navController
                             )
                         }
 
                         composable(route = Screen.SignUpScreen.route) {
                             NoteSignUpScreen(
-                                navController = navController,
-                                authViewModel = authViewModel
+                                navController = navController
                             )
                         }
 
@@ -70,9 +64,7 @@ class MainActivity : ComponentActivity() {
                             val userId = authViewModel.userId.value
                             if (userId != null) {
                                 NoteScreen(
-                                    navController = navController,
-                                    noteViewModel = noteViewModel,
-                                    authViewModel = authViewModel
+                                    navController = navController
                                 )
                             }
                         }
@@ -101,7 +93,6 @@ class MainActivity : ComponentActivity() {
                                 AddEditNoteScreen(
                                     navController = navController,
                                     noteColor = color,
-                                    viewModel = addEditNoteViewModel,
                                     userId = userId
                                 )
                             }
