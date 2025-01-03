@@ -7,7 +7,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.noteapp.feature_aunthentication.domain.model.User
 import com.example.noteapp.feature_aunthentication.domain.use_case.AddUserUseCase
 import com.example.noteapp.feature_note.utils.ERROR_TAG
 import com.example.noteapp.feature_note.utils.UNEXPECTED_CREDENTIAL
@@ -79,7 +78,6 @@ class AuthViewModel(
                     if (task.isSuccessful) {
                         _authState.value = AuthState.Authenticated
                         _userId.value = auth.currentUser?.uid // Update user ID
-                        addUserToDatabase(username, email) // Add user to the database
                     } else {
                         _authState.value =
                             AuthState.Error(task.exception?.message ?: "Something went wrong")
@@ -93,25 +91,6 @@ class AuthViewModel(
         _authState.value = AuthState.UnAuthenticated
         _userId.value = null // Clear user ID
 
-    }
-
-    private fun addUserToDatabase(username: String, email: String) {
-        val uid = auth.currentUser?.uid ?: return // Firebase UID should not be null here
-        val userId = uid.hashCode() // Or use a more robust ID mapping strategy
-        viewModelScope.launch {
-            try {
-                addUserUseCase(
-                    User(
-                        id = userId,
-                        uid = uid,
-                        name = username,
-                        email = email
-                    )
-                )
-            } catch (e: Exception) {
-                _authState.postValue(AuthState.Error("Failed to save user to database."))
-            }
-        }
     }
 
     fun onSignInWithGoogle(credential: Credential) {

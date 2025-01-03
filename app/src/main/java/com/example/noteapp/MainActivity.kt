@@ -13,6 +13,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.noteapp.feature_aunthentication.presentation.AuthState
 import com.example.noteapp.feature_aunthentication.presentation.AuthViewModel
 import com.example.noteapp.feature_aunthentication.presentation.signIn.NoteSignInScreen
 import com.example.noteapp.feature_aunthentication.presentation.signUp.NoteSignUpScreen
@@ -38,9 +39,15 @@ class MainActivity : ComponentActivity() {
                 ) {
                     val navController = rememberNavController()
                     val authViewModel: AuthViewModel = koinViewModel()
+
                     NavHost(
                         navController = navController,
-                        startDestination = Screen.WelcomeScreen.route
+                        startDestination = if (authViewModel.authState.value is AuthState.Authenticated) {
+                            Screen.NotesScreen.route
+                        } else {
+                            Screen.WelcomeScreen.route
+                        }
+
                     ) {
                         composable(route = Screen.WelcomeScreen.route) {
                             NoteWelcomeScreen(
@@ -97,9 +104,7 @@ class MainActivity : ComponentActivity() {
                                 )
                             }
                         }
-
                     }
-
                 }
             }
         }
