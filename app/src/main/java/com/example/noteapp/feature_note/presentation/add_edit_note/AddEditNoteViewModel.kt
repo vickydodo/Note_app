@@ -11,6 +11,8 @@ import com.example.noteapp.feature_note.domain.model.InvalidNoteException
 import com.example.noteapp.feature_note.domain.model.Note
 import com.example.noteapp.feature_note.domain.use_case.AddNoteUseCase
 import com.example.noteapp.feature_note.domain.use_case.GetNoteUseCase
+import com.example.noteapp.feature_note.presentation.add_edit_note.components.AddEditNoteEvent
+import com.example.noteapp.feature_note.presentation.add_edit_note.components.NoteTextFieldState
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch

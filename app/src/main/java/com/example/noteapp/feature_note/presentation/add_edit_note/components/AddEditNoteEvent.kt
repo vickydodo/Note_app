@@ -1,4 +1,4 @@
-package com.example.noteapp.feature_note.presentation.add_edit_note
+package com.example.noteapp.feature_note.presentation.add_edit_note.components
 
 import android.net.Uri
 import androidx.compose.ui.focus.FocusState
@@ -14,5 +14,5 @@ sealed class AddEditNoteEvent {
     data class CaptureImage(val imageUri: Uri) : AddEditNoteEvent()
 
 
-    object SaveNote : AddEditNoteEvent()
+    data object SaveNote : AddEditNoteEvent()
 }

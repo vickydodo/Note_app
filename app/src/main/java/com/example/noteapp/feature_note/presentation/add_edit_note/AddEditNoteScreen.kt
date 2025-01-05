@@ -46,6 +46,7 @@ import androidx.compose.ui.unit.dp
 import androidx.core.content.FileProvider
 import androidx.navigation.NavController
 import com.example.noteapp.feature_note.domain.model.Note
+import com.example.noteapp.feature_note.presentation.add_edit_note.components.AddEditNoteEvent
 import com.example.noteapp.feature_note.presentation.add_edit_note.components.AttachmentDialog
 import com.example.noteapp.feature_note.presentation.add_edit_note.components.TransparentHintTextField
 import kotlinx.coroutines.launch
