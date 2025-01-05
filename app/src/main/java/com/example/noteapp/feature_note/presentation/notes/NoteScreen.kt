@@ -9,6 +9,7 @@ import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -17,6 +18,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Button
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
@@ -25,7 +28,6 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.SnackbarResult
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Create
 import androidx.compose.material.icons.filled.FilterList
 import androidx.compose.material.rememberScaffoldState
@@ -34,8 +36,11 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.noteapp.R
 import com.example.noteapp.feature_aunthentication.presentation.AuthViewModel
 import com.example.noteapp.feature_note.presentation.notes.components.NoteItem
 import com.example.noteapp.feature_note.presentation.notes.components.OrderSection
@@ -102,18 +107,20 @@ fun NoteScreen(
                         tint = Color.White
                     )
                 }
-                IconButton(
+                Button(
                     onClick = {
                         authViewModel.signOut()
                         navController.navigate(Screen.LoginScreen.route) {
                             popUpTo(Screen.NotesScreen.route) { inclusive = true }
                         }
-                    }
+                    },
+                    shape = RoundedCornerShape(8.dp),
+                    contentPadding = PaddingValues(horizontal = 15.dp),
+                    modifier = Modifier.padding(end = 8.dp).height(30.dp)
                 ) {
-                    Icon(
-                        Icons.Default.Close,
-                        contentDescription = "Sign Out",
-                        tint = Color.White
+                    Text(
+                        text = stringResource(R.string.sign_out),
+                        fontSize = 12.sp,
                     )
                 }
             }
